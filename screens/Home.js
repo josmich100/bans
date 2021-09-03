@@ -1,10 +1,13 @@
 import React from "react";
-import { SafeAreaView, StyleSheet, Text, View,Image } from "react-native";
+import { SafeAreaView, StyleSheet, Text, View, Image } from "react-native";
 import tw from "tailwind-react-native-classnames";
 import NavOptions from "../components/NavOptions";
 import { GOOGLE_MAPS_APIKEY } from "@env";
-import { GooglePlacesAutocomplete } from 'react-native-google-places-autocomplete';
+import { useDispatch } from "react-redux";
+import { GooglePlacesAutocomplete } from "react-native-google-places-autocomplete";
+import { setDestination, setOrigin } from "../slices/navSlice";
 const Home = () => {
+  const dispatch = useDispatch();
   return (
     <SafeAreaView style={tw`bg-white h-full`}>
       <View style={tw`p-5`}>
@@ -19,23 +22,27 @@ const Home = () => {
           }}
         />
         <GooglePlacesAutocomplete
-        placeholder="starting point"
-        styles = {{
-            container:{
-                flex:0,
-            },
-            textInput:{
-                fontSize: 18,
-            },
-        }}
-        enablePoweredByContainer={false}
-        minLength={2}
-        query = {{
+          placeholder="starting point"
+          styles={{container:{flex:0,}, textInput:{fontSize:18},}}
+          onPress={(data, details = null) => {
+            dispatch(
+              setOrigin({
+                location: details.geometry.location,
+                description: data.description,
+              })
+            );
+            dispatch(setDestination(null));
+          }}
+          fetchDetails={true}
+          returnKeyType={"search"}
+          enablePoweredByContainer={false}
+          minLength={2}
+          query={{
             key: GOOGLE_MAPS_APIKEY,
-            language:"en",
-        }}
-        nearbyPlacesAPI= "GooglePlacesSearch"
-        debounce={400}
+            language: "en",
+          }}
+          nearbyPlacesAPI="GooglePlacesSearch"
+          debounce={400}
         />
         <NavOptions />
       </View>
@@ -44,5 +51,5 @@ const Home = () => {
 };
 
 export default Home;
-
+ 
 const styles = StyleSheet.create({});
