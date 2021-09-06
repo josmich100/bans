@@ -2,7 +2,6 @@ import React from "react";
 import { SafeAreaView, StyleSheet, Text, View, Image } from "react-native";
 import tw from "tailwind-react-native-classnames";
 import NavOptions from "../components/NavOptions";
-
 const Home = () => {
   return (
     <View style={tw`p-10 bg-white items-center justify-center`}>
