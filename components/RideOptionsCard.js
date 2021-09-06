@@ -1,12 +1,12 @@
 import React from "react";
-import { StyleSheet, Text, View, SafeAreaView } from "react-native";
+import { StyleSheet, Text, View } from "react-native";
 import tw from "tailwind-react-native-classnames";
 
 const RideOptionsCard = () => {
   return (
-    <SafeAreaView style={tw`bg-white flex-1`}>
+    <View>
       <Text style={tw`text-center py-5`}>choose ride</Text>
-    </SafeAreaView>
+    </View>
   );
 };
 
