@@ -4,8 +4,9 @@ import tw from "tailwind-react-native-classnames";
 import { useDispatch } from "react-redux";
 import { GooglePlacesAutocomplete } from "react-native-google-places-autocomplete";
 import { setDestination, setOrigin } from "../slices/navSlice";
-import {GOOGLE_MAPS_APIKEY} from "@env";
+import { GOOGLE_MAPS_APIKEY } from "@env";
 import { useNavigation } from "@react-navigation/native";
+import Favorites from "./Favorites";
 
 const NavigateCard = () => {
   const dispatch = useDispatch();
@@ -13,11 +14,17 @@ const NavigateCard = () => {
   return (
     <SafeAreaView style={tw`bg-white flex-1`}>
       <Text style={tw`text-center py-5 text-2xl`}>Hey there Josiah</Text>
-          <View style={tw`border-t border-gray-200 flex-shrink`}>
-             <GooglePlacesAutocomplete
+      <View style={tw`border-t border-gray-200 flex-shrink`}>
+        <GooglePlacesAutocomplete
           placeholder="Where to?"
-          styles={{container:{flex:0,backgroundColor: "white",paddingTop: 20,}, 
-          textInput:{fontSize:18, borderRadius: 0,backgroundColor: "#DDDDDF"},}}
+          styles={{
+            container: { flex: 0, backgroundColor: "white", paddingTop: 20 },
+            textInput: {
+              fontSize: 18,
+              borderRadius: 0,
+              backgroundColor: "#DDDDDF",
+            },
+          }}
           onPress={(data, details = null) => {
             dispatch(
               setDestination({
@@ -38,7 +45,36 @@ const NavigateCard = () => {
           }}
           nearbyPlacesAPI="GooglePlacesSearch"
           debounce={400}
-        /> 
+        />
+        <Favorites />
+      </View>
+      <View
+        style={tw`flex-row bg-white justify-evenly py-2 mt-auto border-t border-gray-100`}
+      >
+        <TouchableOpacity
+          style={tw`flex flex-row bg-black w-24 px-4 py-3 rounded full`}
+        >
+          <Icon
+            style={tw`mr-4 rounded-full bg-gray-300 p-3`}
+            name="car"
+            type="font-awesome"
+            color="white"
+            size={16}
+          />
+          <Text style={tw`text-white text-center`}>Rides</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={tw`flex flex-row bg-black w-24 px-4 py-3 rounded full`}
+        >
+          <Icon
+            style={tw`mr-4 rounded-full bg-gray-300 p-3`}
+            name="car"
+            type="font-awesome"
+            color="white"
+            size={16}
+          />
+          <Text style={tw`font-bold text-lg`}>Rides</Text>
+        </TouchableOpacity>
       </View>
     </SafeAreaView>
   );

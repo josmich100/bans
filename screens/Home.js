@@ -6,6 +6,7 @@ import { GOOGLE_MAPS_APIKEY } from "@env";
 import { useDispatch } from "react-redux";
 import { GooglePlacesAutocomplete } from "react-native-google-places-autocomplete";
 import { setDestination, setOrigin } from "../slices/navSlice";
+import Favorites from "../components/Favorites";
 const Home = () => {
   const dispatch = useDispatch();
   return (
@@ -23,7 +24,7 @@ const Home = () => {
         />
         <GooglePlacesAutocomplete
           placeholder="starting point"
-          styles={{container:{flex:0,}, textInput:{fontSize:18},}}
+          styles={{ container: { flex: 0 }, textInput: { fontSize: 18 } }}
           onPress={(data, details = null) => {
             dispatch(
               setOrigin({
@@ -45,11 +46,12 @@ const Home = () => {
           debounce={400}
         />
         <NavOptions />
+        <Favorites />
       </View>
     </SafeAreaView>
   );
 };
 
 export default Home;
- 
+
 const styles = StyleSheet.create({});
