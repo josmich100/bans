@@ -1,5 +1,11 @@
 import React from "react";
-import { StyleSheet, Text, View, SafeAreaView } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  View,
+  SafeAreaView,
+  TouchableOpacity,
+} from "react-native";
 import tw from "tailwind-react-native-classnames";
 import { useDispatch } from "react-redux";
 import { GooglePlacesAutocomplete } from "react-native-google-places-autocomplete";
@@ -7,9 +13,12 @@ import { setDestination, setOrigin } from "../slices/navSlice";
 import { GOOGLE_MAPS_APIKEY } from "@env";
 import { useNavigation } from "@react-navigation/native";
 import Favorites from "./Favorites";
+import { Icon } from "react-native-elements";
+import { Dimensions } from "react-native";
 
 const NavigateCard = () => {
   const dispatch = useDispatch();
+  const windowHeight = Dimensions.get("window").height;
   const navigation = useNavigation();
   return (
     <SafeAreaView style={tw`bg-white flex-1`}>
@@ -49,31 +58,30 @@ const NavigateCard = () => {
         <Favorites />
       </View>
       <View
-        style={tw`flex-row bg-white justify-evenly py-2 mt-auto border-t border-gray-100`}
+        style={tw`flex-row bg-white justify-evenly py-2 mt-auto border-t border-gray-100 bottom-8`}
       >
         <TouchableOpacity
-          style={tw`flex flex-row bg-black w-24 px-4 py-3 rounded full`}
+          style={tw`flex flex-row bg-black w-24 px-4 py-3 rounded-full`}
+          onPress={() => navigation.navigate("RideOptionsCard")}
         >
           <Icon
-            style={tw`mr-4 rounded-full bg-gray-300 p-3`}
+            style={tw``}
             name="car"
             type="font-awesome"
             color="white"
             size={16}
           />
-          <Text style={tw`text-white text-center`}>Rides</Text>
+          <Text style={tw`text-white text-center pl-2`}>Rides</Text>
         </TouchableOpacity>
-        <TouchableOpacity
-          style={tw`flex flex-row bg-black w-24 px-4 py-3 rounded full`}
-        >
+        <TouchableOpacity style={tw`flex flex-row w-24 px-4 py-3 rounded-full`}>
           <Icon
-            style={tw`mr-4 rounded-full bg-gray-300 p-3`}
+            style={tw``}
             name="car"
             type="font-awesome"
-            color="white"
+            color="black"
             size={16}
           />
-          <Text style={tw`font-bold text-lg`}>Rides</Text>
+          <Text style={tw`font-bold text-lg`}>Hire</Text>
         </TouchableOpacity>
       </View>
     </SafeAreaView>
