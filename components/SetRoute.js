@@ -1,25 +1,83 @@
 import React, { useState } from "react";
 import { Alert, Modal, StyleSheet, Text, Pressable, View } from "react-native";
+import { GooglePlacesAutocomplete } from "react-native-google-places-autocomplete";
+import { setDestination, setOrigin } from "../slices/navSlice";
+import { GOOGLE_MAPS_APIKEY } from "@env";
+import { useDispatch } from "react-redux";
+import { useNavigation } from "@react-navigation/native";
 
-const SetRoute = () => {
-  const [modalVisible, setModalVisible] = useState(false);
+const SetRoute = ({ setOpenModal }) => {
+  const dispatch = useDispatch();
+  const navigation = useNavigation();
   return (
     <View style={styles.centeredView}>
-      <Modal
-        animationType="slide"
-        transparent={true}
-        visible={modalVisible}
-        onRequestClose={() => {
-          Alert.alert("Modal has been closed.");
-          setModalVisible(!modalVisible);
-        }}
-      >
+      <Modal animationType="slide" transparent={true}>
         <View style={styles.centeredView}>
           <View style={styles.modalView}>
+            <GooglePlacesAutocomplete
+              placeholder="starting point"
+              styles={{ container: { flex: 0 }, textInput: { fontSize: 18 } }}
+              onPress={(data, details = null) => {
+                dispatch(
+                  setOrigin({
+                    location: details.geometry.location,
+                    description: data.description,
+                  })
+                );
+                dispatch(setDestination(null));
+              }}
+              fetchDetails={true}
+              returnKeyType={"search"}
+              enablePoweredByContainer={false}
+              minLength={2}
+              query={{
+                key: GOOGLE_MAPS_APIKEY,
+                language: "en",
+              }}
+              nearbyPlacesAPI="GooglePlacesSearch"
+              debounce={400}
+            />
+            <GooglePlacesAutocomplete
+              placeholder="Where to?"
+              styles={{
+                container: {
+                  flex: 0,
+                  backgroundColor: "white",
+                  paddingTop: 20,
+                },
+                textInput: {
+                  fontSize: 18,
+                  borderRadius: 0,
+                  backgroundColor: "#DDDDDF",
+                },
+              }}
+              onPress={(data, details = null) => {
+                dispatch(
+                  setDestination({
+                    location: details.geometry.location,
+                    description: data.description,
+                  })
+                );
+                navigation.navigate("RideOptionsCard");
+                //dispatch(setDestination(null));
+              }}
+              fetchDetails={true}
+              returnKeyType={"search"}
+              enablePoweredByContainer={false}
+              minLength={2}
+              query={{
+                key: GOOGLE_MAPS_APIKEY,
+                language: "en",
+              }}
+              nearbyPlacesAPI="GooglePlacesSearch"
+              debounce={400}
+            />
             <Text style={styles.modalText}>Hello World!</Text>
             <Pressable
               style={[styles.button, styles.buttonClose]}
-              onPress={() => setModalVisible(!modalVisible)}
+              onPress={() => {
+                setOpenModal(false);
+              }}
             >
               <Text style={styles.textStyle}>Hide Modal</Text>
             </Pressable>
@@ -37,47 +95,47 @@ const SetRoute = () => {
 };
 
 const styles = StyleSheet.create({
-  centeredView: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-    marginTop: 22,
-  },
-  modalView: {
-    margin: 20,
-    backgroundColor: "white",
-    borderRadius: 20,
-    padding: 35,
-    alignItems: "center",
-    shadowColor: "#000",
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.25,
-    shadowRadius: 4,
-    elevation: 5,
-  },
-  button: {
-    borderRadius: 20,
-    padding: 10,
-    elevation: 2,
-  },
-  buttonOpen: {
-    backgroundColor: "#F194FF",
-  },
-  buttonClose: {
-    backgroundColor: "#2196F3",
-  },
-  textStyle: {
-    color: "white",
-    fontWeight: "bold",
-    textAlign: "center",
-  },
-  modalText: {
-    marginBottom: 15,
-    textAlign: "center",
-  },
+  // centeredView: {
+  //   flex: 1,
+  //   justifyContent: "center",
+  //   alignItems: "center",
+  //   marginTop: 22,
+  // },
+  // modalView: {
+  //   margin: 20,
+  //   backgroundColor: "white",
+  //   borderRadius: 20,
+  //   padding: 35,
+  //   alignItems: "center",
+  //   shadowColor: "#000",
+  //   shadowOffset: {
+  //     width: 0,
+  //     height: 2,
+  //   },
+  //   shadowOpacity: 0.25,
+  //   shadowRadius: 4,
+  //   elevation: 5,
+  // },
+  // button: {
+  //   borderRadius: 20,
+  //   padding: 10,
+  //   elevation: 2,
+  // },
+  // buttonOpen: {
+  //   backgroundColor: "#F194FF",
+  // },
+  // buttonClose: {
+  //   backgroundColor: "#2196F3",
+  // },
+  // textStyle: {
+  //   color: "white",
+  //   fontWeight: "bold",
+  //   textAlign: "center",
+  // },
+  // modalText: {
+  //   marginBottom: 15,
+  //   textAlign: "center",
+  // },
 });
 
 export default SetRoute;
