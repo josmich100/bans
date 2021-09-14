@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { Keyboard, View, Button, Text, TextInput } from "react-native";
 import tw from "tailwind-react-native-classnames";
-// import { CallingCodePicker } from "rn-country-code-picker";
 
 export default function LoginScreen() {
   const [phone, setPhone] = useState("");
@@ -16,8 +15,6 @@ export default function LoginScreen() {
     setOTP(OTP);
     return OTP;
   };
-
-  const [selectedCallingCode, setSelectedCallingCode] = useState("254");
 
   return (
     <View style={tw`flex-1 bg-yellow-300 items-center justify-center`}>
@@ -38,10 +35,6 @@ export default function LoginScreen() {
         placeholderTextColor="white"
         keyboardType="numeric"
         autoCompleteType="tel"
-      />
-      <CallingCodePicker
-        selectedValue={selectedCallingCode}
-        onValueChange={(value) => setSelectedCallingCode(value)}
       />
       <Button
         title="Submit"
