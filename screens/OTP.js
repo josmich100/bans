@@ -27,8 +27,10 @@ export default function LoginScreen() {
       <OTPInputView
         style={{ width: "80%", height: 200 }}
         pinCount={4}
-          code={this.state.code}
-          onCodeChanged = {code => { this.setState({code})}}
+        code={this.state.code}
+        onCodeChanged={(code) => {
+          this.setState({ code });
+        }}
         autoFocusOnLoad
         codeInputFieldStyle={styles.underlineStyleBase}
         codeInputHighlightStyle={styles.underlineStyleHighLighted}
@@ -36,7 +38,6 @@ export default function LoginScreen() {
           console.log(`Code is ${code}, you are good to go!`);
         }}
       />
-      <Text> LoginScreen </Text>
     </View>
   );
 }

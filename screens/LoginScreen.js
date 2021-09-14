@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { Keyboard, View, Button, Text, TextInput } from "react-native";
 import tw from "tailwind-react-native-classnames";
+import PhoneInput from "react-native-phone-input";
+
 
 export default function LoginScreen() {
   const [phone, setPhone] = useState("");
@@ -23,6 +25,7 @@ export default function LoginScreen() {
         Enter your phone number to log in...
       </Text>
 
+      <PhoneInput ref="phone" />
       <TextInput
         style={tw`text-3xl text-white m-10 px-5 py-2 border-2 border-white`}
         autoFocus={true}
