@@ -16,8 +16,6 @@ export default function LoginScreen() {
     return OTP;
   };
 
-  const [selectedCallingCode, setSelectedCallingCode] = useState("254");
-
   return (
     <View style={tw`flex-1 bg-yellow-300 items-center justify-center`}>
       <Text style={tw`text-4xl text-white text-center font-bold`}>Login</Text>
