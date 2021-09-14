@@ -13,14 +13,16 @@ const Map = () => {
   const origin = useSelector(selectOrigin);
   const destination = useSelector(selectDestination);
   //const { modalVisible, setModalVisible } = SetRoute();
+  const lat = parseFloat(position.coords.latitude);
+  const long = parseFloat(position.coords.longitude);
 
   return (
     <View style={[tw`flex-1 `]}>
       <MapView
         style={[tw`flex-1`]}
         initialRegion={{
-          latitude: -0.7749015,
-          longitude: 34.9418074,
+          latitude: lat,
+          longitude: long,
           latitudeDelta: 0.005,
           longitudeDelta: 0.005,
         }}
