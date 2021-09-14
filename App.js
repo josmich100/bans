@@ -4,6 +4,7 @@ import tw from "tailwind-react-native-classnames";
 import { Provider } from "react-redux";
 import { store } from "./store";
 import Home from "./screens/Home";
+import Welcome from "./screens/Welcome";
 import LoginScreen from "./screens/LoginScreen";
 import Taxi from "./screens/Taxi";
 import CarHire from "./screens/CarHire";
@@ -19,6 +20,11 @@ export default function App() {
       <NavigationContainer>
         <SafeAreaProvider>
           <Stack.Navigator>
+            <Stack.Screen
+              name="Welcome"
+              component={Welcome}
+              options={{ headerShown: false }}
+            />
             <Stack.Screen
               name="Home"
               component={Home}
