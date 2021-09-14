@@ -11,7 +11,11 @@ import MapView, { Marker } from "react-native-maps";
 import MapViewDirections from "react-native-maps-directions";
 import { useSelector } from "react-redux";
 import tw from "tailwind-react-native-classnames";
-import { selectDestination, selectOrigin } from "../slices/navSlice";
+import {
+  selectDestination,
+  selectOrigin,
+  setTravelTime,
+} from "../slices/navSlice";
 import { GOOGLE_MAPS_APIKEY } from "@env";
 import { Icon } from "react-native-elements";
 import { useNavigation } from "@react-navigation/native";
@@ -45,6 +49,7 @@ const RideOptionsCard = () => {
   const origin = useSelector(selectOrigin);
   const destination = useSelector(selectDestination);
   const mapRef = useRef(null);
+  const dispatch = useDispatch();
 
   useEffect(() => {
     if (!origin || !destination) return;
@@ -58,6 +63,22 @@ const RideOptionsCard = () => {
       },
     ]);
   }, [origin, destination]);
+
+  useEffect(() => {
+    if (!origin || !destination) return;
+
+    const getTravelTime = async () => {
+      fetch(
+        `https://maps.googleapis.com/maps/api/distancematrix/json?units=imperial&origins=${origin.description}&destinations=${destination.description}&key=${GOOGLE_MAPS_APIKEY}`
+      )
+        .then((response) => response.json())
+        .then((data) => {
+          dispatch(setTravelTime(data.rows[0].elements[0]));
+        });
+    };
+
+    getTravelTime();
+  }, [origin, destination, GOOGLE_MAPS_APIKEY]);
   return (
     <SafeAreaView>
       <View style={tw`h-1/2 w-full bg-gray-300`}>
