@@ -16,7 +16,7 @@ const SetRoute = ({ setOpenModal }) => {
         <View style={styles.centeredView}>
           <View style={tw`bg-gray-200 ml-5 mr-10`}>
             <GooglePlacesAutocomplete
-              placeholder="starting point"
+              placeholder="Pick up point"
               styles={{ container: { flex: 0 }, textInput: { fontSize: 18 } }}
               onPress={(data, details = null) => {
                 dispatch(

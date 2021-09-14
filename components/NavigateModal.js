@@ -41,7 +41,7 @@ const NavigateModal = () => {
           showsUserLocation={true}
         />
         <View style={[tw`items-center`]}>
-          {/* <TouchableOpacity
+          <TouchableOpacity
             style={[
               tw`absolute bottom-5 mx-0 p-3 rounded-lg items-center w-5/6 bg-yellow-300`,
             ]}
@@ -50,8 +50,8 @@ const NavigateModal = () => {
             }}
           >
             <Text style={tw`text-white text-lg font-bold`}>Set Route</Text>
-          </TouchableOpacity> */}
-          <SetRoute setOpenModal={setModalOpen} />
+          </TouchableOpacity>
+          {modalOpen && <SetRoute setOpenModal={setModalOpen} />}
         </View>
       </View>
     </SafeAreaView>
