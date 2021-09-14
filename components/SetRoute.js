@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import { Alert, Modal, StyleSheet, Text, Pressable, View } from "react-native";
+import tw from "tailwind-react-native-classnames";
 
 const SetRoute = () => {
   const [modalVisible, setModalVisible] = useState(false);
   return (
-    <View style={styles.centeredView}>
+    <View style={"tw`flex-1 items-center justify-center mt-3`"}>
       <Modal
         animationType="slide"
         transparent={true}
@@ -14,14 +15,16 @@ const SetRoute = () => {
           setModalVisible(!modalVisible);
         }}
       >
-        <View style={styles.centeredView}>
-          <View style={styles.modalView}>
-            <Text style={styles.modalText}>Hello World!</Text>
+        <View style={"tw`flex-1 items-center justify-center mt-3`"}>
+          <View style={"tw`m-2 p-2 bg-white items-center rounded shadow`"}>
+            <Text style={"tw`mb-3 text-center`"}>Hello World!</Text>
             <Pressable
-              style={[styles.button, styles.buttonClose]}
+              style={"tw`rounded p-2`"}
               onPress={() => setModalVisible(!modalVisible)}
             >
-              <Text style={styles.textStyle}>Hide Modal</Text>
+              <Text style={"tw`text-white text-center font-bold`"}>
+                Hide Modal
+              </Text>
             </Pressable>
           </View>
         </View>
