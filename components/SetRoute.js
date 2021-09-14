@@ -3,6 +3,7 @@ import { Alert, Modal, StyleSheet, Text, Pressable, View } from "react-native";
 import { GooglePlacesAutocomplete } from "react-native-google-places-autocomplete";
 import { setDestination, setOrigin } from "../slices/navSlice";
 import { GOOGLE_MAPS_APIKEY } from "@env";
+import tw from "tailwind-react-native-classnames";
 import { useDispatch } from "react-redux";
 import { useNavigation } from "@react-navigation/native";
 
@@ -13,7 +14,7 @@ const SetRoute = ({ setOpenModal }) => {
     <View style={styles.centeredView}>
       <Modal animationType="slide" transparent={true}>
         <View style={styles.centeredView}>
-          <View style={styles.modalView}>
+          <View style={tw`bg-gray-200 ml-5 mr-10`}>
             <GooglePlacesAutocomplete
               placeholder="starting point"
               styles={{ container: { flex: 0 }, textInput: { fontSize: 18 } }}
