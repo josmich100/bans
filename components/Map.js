@@ -9,12 +9,13 @@ import MapViewDirections from "react-native-maps-directions";
 import { GOOGLE_MAPS_APIKEY } from "@env";
 
 const Map = () => {
+  const [modalOpen, setModalOpen] = useState(false);
   const origin = useSelector(selectOrigin);
   const destination = useSelector(selectDestination);
-  const { modalVisible, setModalVisible } = SetRoute();
+  //const { modalVisible, setModalVisible } = SetRoute();
 
   return (
-    <View style={[tw`flex-1`]}>
+    <View style={[tw`flex-1 `]}>
       <MapView
         style={[tw`flex-1`]}
         initialRegion={{
@@ -24,7 +25,7 @@ const Map = () => {
           longitudeDelta: 0.005,
         }}
       >
-        {/* <MapViewDirections
+        {/*<MapViewDirections
         lineDashPattern={[0]}
         origin={origin.description}
         destination={destination.description}
@@ -48,10 +49,13 @@ const Map = () => {
           style={[
             tw`absolute bottom-5 mx-0 p-3 rounded-lg items-center w-5/6 bg-yellow-300`,
           ]}
-          onPress={() => setModalVisible(true)}
+          onPress={() => {
+            setModalOpen(true);
+          }}
         >
           <Text style={tw`text-white text-lg font-bold`}>Set Route</Text>
         </TouchableOpacity>
+        {modalOpen && <SetRoute setOpenModal={setModalOpen} />}
       </View>
     </View>
   );

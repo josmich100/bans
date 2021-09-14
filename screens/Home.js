@@ -8,6 +8,7 @@ import {
   Image,
 } from "react-native";
 import tw from "tailwind-react-native-classnames";
+import Logo from "../assets/logo.jpg";
 import NavOptions from "../components/NavOptions";
 import Logo from "../assets/logo.png";
 

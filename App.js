@@ -7,7 +7,6 @@ import Home from "./screens/Home";
 import LoginScreen from "./screens/LoginScreen";
 import Taxi from "./screens/Taxi";
 import CarHire from "./screens/CarHire";
-import MapScreen from "./screens/MapScreen";
 import { NavigationContainer } from "@react-navigation/native";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
@@ -38,11 +37,6 @@ export default function App() {
             <Stack.Screen
               name="CarHire"
               component={CarHire}
-              options={{ headerShown: false }}
-            />
-            <Stack.Screen
-              name="MapScreen"
-              component={MapScreen}
               options={{ headerShown: false }}
             />
           </Stack.Navigator>

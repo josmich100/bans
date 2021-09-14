@@ -7,7 +7,7 @@ import { useNavigation } from "@react-navigation/native";
 const data = [
   {
     id: "24",
-    title: "Taxi",
+    title: "Taxi Screen",
     image: "https://www.fremont.gov/ImageRepository/Document?documentID=42933",
     screen: "Taxi",
   },
