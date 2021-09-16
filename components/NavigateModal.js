@@ -33,7 +33,7 @@ const NavigateModal = () => {
   return (
     <SafeAreaView>
       <View
-        style={tw`h-1/4 w-5/6 rounded-md bg-green-300 m-auto mt-5 items-center`}
+        style={tw`h-1/4 w-5/6 m-auto mt-5 items-center bg-white rounded-md`}
       >
         <SetRoute />
       </View>
