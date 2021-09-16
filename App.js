@@ -6,6 +6,7 @@ import { store } from "./store";
 import Home from "./screens/Home";
 import Welcome from "./screens/Welcome";
 import LoginScreen from "./screens/LoginScreen";
+import OTP from "./screens/OTP";
 import Taxi from "./screens/Taxi";
 import CarHire from "./screens/CarHire";
 import { NavigationContainer } from "@react-navigation/native";
@@ -20,19 +21,24 @@ export default function App() {
       <NavigationContainer>
         <SafeAreaProvider>
           <Stack.Navigator>
-            <Stack.Screen
+            {/* <Stack.Screen
               name="Welcome"
               component={Welcome}
               options={{ headerShown: false }}
-            />
-            <Stack.Screen
-              name="Home"
-              component={Home}
+            /> */}
+            {/* <Stack.Screen
+              name="Login"
+              component={LoginScreen}
               options={{ headerShown: false }}
             />
             <Stack.Screen
-              name="Login"
-              component={LoginScreen}
+              name="OTP"
+              component={OTP}
+              options={{ headerShown: false }}
+            /> */}
+            <Stack.Screen
+              name="Home"
+              component={Home}
               options={{ headerShown: false }}
             />
             <Stack.Screen
