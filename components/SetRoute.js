@@ -1,12 +1,18 @@
 import React, { useState } from "react";
-import { Alert, Modal,Pressable, Text, TouchableOpacity, View } from "react-native";
+import {
+  Alert,
+  Modal,
+  Text,
+  TouchableOpacity,
+  Pressable,
+  View,
+} from "react-native";
 import { GooglePlacesAutocomplete } from "react-native-google-places-autocomplete";
 import { setDestination, setOrigin } from "../slices/navSlice";
 import { GOOGLE_MAPS_APIKEY } from "@env";
 import tw from "tailwind-react-native-classnames";
 import { Icon } from "react-native-vector-icons";
 import { useDispatch } from "react-redux";
-import { useNavigation } from "@react-navigation/native";
 
 const SetRoute = () => {
   const dispatch = useDispatch();

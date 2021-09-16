@@ -24,14 +24,13 @@ const NavOptions = () => {
   const navigation = useNavigation();
   return (
     <FlatList
+      style={tw`m-2`}
       data={data}
       keyExtractor={(item) => item.id}
       renderItem={({ item }) => (
         <TouchableOpacity
           onPress={() => navigation.navigate(item.screen)}
-          style={[
-            tw`mx-auto mb-5 h-44 w-44 rounded-full items-center justify-center bg-yellow-300`,
-          ]}
+          style={tw`mx-auto mb-5 h-44 w-44 rounded-full items-center justify-center bg-yellow-300`}
         >
           <View style={tw`items-center`}>
             <Image
