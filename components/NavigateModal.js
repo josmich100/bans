@@ -40,7 +40,7 @@ const NavigateModal = () => {
       <View style={tw`h-3/4 w-full m-auto mt-5`}>
         {/* <Favorites /> */}
         <MapView
-          style={tw`h-full`}
+          style={tw`h-full mt-16`}
           initialRegion={position}
           showsUserLocation={true}
         />

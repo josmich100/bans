@@ -1,64 +1,106 @@
 import React, { useState } from "react";
-import { View, Button, Text } from "react-native";
-import OTPInputView from "@twotalltotems/react-native-otp-input";
-import RNOtpVerify from "react-native-otp-verify";
+import { SafeAreaView, Text, StyleSheet } from "react-native";
+import tw from "tailwind-react-native-classnames";
 
-export default function LoginScreen() {
-  getHash = () => RNOtpVerify.getHash().then(console.log).catch(console.log);
+import {
+  CodeField,
+  Cursor,
+  useBlurOnFulfill,
+  useClearByFocusCell,
+} from "react-native-confirmation-code-field";
 
-  startListeningForOtp = () =>
-    RNOtpVerify.getOtp()
-      .then((p) => RNOtpVerify.addListener(this.otpHandler))
-      .catch((p) => console.log(p));
+// codeInputSubmitted(code) {
+//   const { verificationId } = this.state;
 
-  otpHandler = (message) => {
-    const otp = /(\d{4})/g.exec(message)[1];
-    this.setState({ otp });
-    RNOtpVerify.removeListener();
-    Keyboard.dismiss();
-  };
+//   const credential = firebase.auth.PhoneAuthProvider.credential(
+//     verificationId,
+//     code
+//   );
 
-  componentWillUnmount = () => {
-    RNOtpVerify.removeListener();
-  };
+//   // To verify phone number without interfering with the existing user
+//   // who is signed in, we offload the verification to a worker app.
+//   let fbWorkerApp = firebase.apps.find(app => app.name === 'auth-worker')
+//                  || firebase.initializeApp(firebase.app().options, 'auth-worker');
+//   fbWorkerAuth = fbWorkerApp.auth();
+//   fbWorkerAuth.setPersistence(firebase.auth.Auth.Persistence.NONE); // disables caching of account credentials
+
+//   fbWorkerAuth.signInWithCredential(credential)
+//     .then((userCredential) => {
+//       // userCredential.additionalUserInfo.isNewUser may be present
+//       // userCredential.credential can be used to link to an existing user account
+
+//       // successful
+//       this.setState({
+//         status: 'Phone number verified!',
+//         verificationId: null,
+//         showCodeInput: false,
+//         user: userCredential.user;
+//       });
+
+//       return fbWorkerAuth.signOut().catch(err => console.error('Ignored sign out error: ', err);
+//     })
+//     .catch((err) => {
+//       // failed
+//       let userErrorMessage;
+//       if (error.code === 'auth/invalid-verification-code') {
+//         userErrorMessage = 'Sorry, that code was incorrect.'
+//       } else if (error.code === 'auth/user-disabled') {
+//         userErrorMessage = 'Sorry, this phone number has been blocked.';
+//       } else {
+//         // other internal error
+//         // see https://firebase.google.com/docs/reference/js/firebase.auth.Auth.html#sign-inwith-credential
+//         userErrorMessage = 'Sorry, we couldn\'t verify that phone number at the moment. '
+//           + 'Please try again later. '
+//           + '\n\nIf the issue persists, please contact support.'
+//       }
+//       this.setState({
+//         codeInputErrorMessage: userErrorMessage
+//       });
+//     })
+// }
+
+const CELL_COUNT = 4;
+
+const OTP = () => {
+  const [value, setValue] = useState("");
+  const ref = useBlurOnFulfill({ value, cellCount: CELL_COUNT });
+  const [props, getCellOnLayoutHandler] = useClearByFocusCell({
+    value,
+    setValue,
+  });
 
   return (
-    <View>
-      <OTPInputView
-        style={{ width: "80%", height: 200 }}
-        pinCount={4}
-          code={this.state.code}
-          onCodeChanged = {code => { this.setState({code})}}
-        autoFocusOnLoad
-        codeInputFieldStyle={styles.underlineStyleBase}
-        codeInputHighlightStyle={styles.underlineStyleHighLighted}
-        onCodeFilled={(code) => {
-          console.log(`Code is ${code}, you are good to go!`);
-        }}
+    <SafeAreaView
+      style={tw`flex-1 items-center justify-center p-10 bg-yellow-300`}
+    >
+      <Text style={tw`text-2xl text-white text-center font-bold`}>
+        Phone Number Verification
+      </Text>
+      <CodeField
+        ref={ref}
+        {...props}
+        // Use `caretHidden={false}` when users can't paste a text value, because context menu doesn't appear
+        value={value}
+        onChangeText={setValue}
+        cellCount={CELL_COUNT}
+        rootStyle={tw`m-2`}
+        keyboardType="number-pad"
+        textContentType="oneTimeCode"
+        renderCell={({ index, symbol, isFocused }) => (
+          <Text
+            key={index}
+            style={[
+              tw`h-12 w-12 p-2 text-xl border-2 border-white`,
+              isFocused && tw`border-black`,
+            ]}
+            onLayout={getCellOnLayoutHandler(index)}
+          >
+            {symbol || (isFocused ? <Cursor /> : null)}
+          </Text>
+        )}
       />
-      <Text> LoginScreen </Text>
-    </View>
+    </SafeAreaView>
   );
-}
+};
 
-const styles = StyleSheet.create({
-  borderStyleBase: {
-    width: 30,
-    height: 45,
-  },
-
-  borderStyleHighLighted: {
-    borderColor: "#03DAC6",
-  },
-
-  underlineStyleBase: {
-    width: 30,
-    height: 45,
-    borderWidth: 0,
-    borderBottomWidth: 1,
-  },
-
-  underlineStyleHighLighted: {
-    borderColor: "#03DAC6",
-  },
-});
+export default OTP;
