@@ -6,7 +6,6 @@ import { GOOGLE_MAPS_APIKEY } from "@env";
 import tw from "tailwind-react-native-classnames";
 import { Icon } from "react-native-vector-icons";
 import { useDispatch } from "react-redux";
-import { useNavigation } from "@react-navigation/native";
 
 const SetRoute = ({ setOpenModal, navigation }) => {
   const dispatch = useDispatch();

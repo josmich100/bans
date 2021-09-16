@@ -18,7 +18,6 @@ import {
 } from "../slices/navSlice";
 import { GOOGLE_MAPS_APIKEY } from "@env";
 import { Icon } from "react-native-elements";
-import { useNavigation } from "@react-navigation/native";
 import Map from "./Map";
 
 const data = [
@@ -45,8 +44,7 @@ const data = [
   },
 ];
 
-const RideOptionsCard = () => {
-  const navigation = useNavigation();
+const RideOptionsCard = ({ navigation }) => {
   const origin = useSelector(selectOrigin);
   const destination = useSelector(selectDestination);
   const dispatch = useDispatch();

@@ -15,9 +15,12 @@ const Home = ({ navigation }) => {
   return (
     <SafeAreaView>
       <View style={tw`p-10 bg-white items-center justify-center`}>
-        <View style={tw`p-10 items-center`}>
-          <Image style={[tw`mb-10 w-20 h-20`]} source={Logo} />
-          <TouchableOpacity
+        <View style={tw`items-center m-0`}>
+          <Image
+            style={[tw`mb-3 w-44 h-24`]}
+            source={require("../assets/splash.png")}
+          />
+          {/* <TouchableOpacity
             title="Login"
             style={tw`h-6 w-16 rounded-full items-center bg-blue-400`}
             onPress={() => {
@@ -25,7 +28,7 @@ const Home = ({ navigation }) => {
             }}
           >
             <Text style={tw`text-white text-lg font-bold`}>Login</Text>
-          </TouchableOpacity>
+          </TouchableOpacity> */}
         </View>
         <NavOptions />
       </View>
