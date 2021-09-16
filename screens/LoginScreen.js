@@ -29,7 +29,6 @@ import PhoneInput from "react-native-phone-input";
 //     });
 //   })
 //   .catch((error) => {
-//     // there was an error
 //     let newStatus;
 //     if (error.message === "already-exists") {
 //       newStatus = "Sorry, this phone number is already in use.";
