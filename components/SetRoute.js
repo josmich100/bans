@@ -7,92 +7,64 @@ import tw from "tailwind-react-native-classnames";
 import { useDispatch } from "react-redux";
 import { useNavigation } from "@react-navigation/native";
 
-const SetRoute = ({ setOpenModal }) => {
+const SetRoute = () => {
   const dispatch = useDispatch();
   const navigation = useNavigation();
   return (
-    <View style={styles.centeredView}>
-      <Modal animationType="slide" transparent={true}>
-        <View style={styles.centeredView}>
-          <View style={tw`bg-gray-200 ml-5 mr-10`}>
-            <GooglePlacesAutocomplete
-              placeholder="Pick up point"
-              styles={{ container: { flex: 0 }, textInput: { fontSize: 18 } }}
-              onPress={(data, details = null) => {
-                dispatch(
-                  setOrigin({
-                    location: details.geometry.location,
-                    description: data.description,
-                  })
-                );
-                dispatch(setDestination(null));
-              }}
-              fetchDetails={true}
-              returnKeyType={"search"}
-              enablePoweredByContainer={false}
-              minLength={2}
-              query={{
-                key: GOOGLE_MAPS_APIKEY,
-                language: "en",
-              }}
-              nearbyPlacesAPI="GooglePlacesSearch"
-              debounce={400}
-            />
-            <GooglePlacesAutocomplete
-              placeholder="Where to?"
-              styles={{
-                container: {
-                  flex: 0,
-                  backgroundColor: "white",
-                  paddingTop: 20,
-                },
-                textInput: {
-                  fontSize: 18,
-                  borderRadius: 0,
-                  backgroundColor: "#DDDDDF",
-                },
-              }}
-              onPress={(data, details = null) => {
-                dispatch(
-                  setDestination({
-                    location: details.geometry.location,
-                    description: data.description,
-                  })
-                );
-                navigation.navigate("RideOptionsCard");
-                //dispatch(setDestination(null));
-              }}
-              fetchDetails={true}
-              returnKeyType={"search"}
-              enablePoweredByContainer={false}
-              minLength={2}
-              query={{
-                key: GOOGLE_MAPS_APIKEY,
-                language: "en",
-              }}
-              nearbyPlacesAPI="GooglePlacesSearch"
-              debounce={400}
-            />
-            <Text style={styles.modalText}>Hello World!</Text>
-            <Pressable
-              style={[styles.button, styles.buttonClose]}
-              onPress={() => {
-                setOpenModal(false);
-              }}
-            >
-              <Text style={"tw`text-white text-center font-bold`"}>
-                Hide Modal
-              </Text>
-            </Pressable>
-          </View>
-        </View>
-      </Modal>
-      {/* <Pressable
-        style={[styles.button, styles.buttonOpen]}
-        onPress={() => setModalVisible(true)}
-      >
-        <Text style={styles.textStyle}>Show Modal</Text>
-      </Pressable> */}
+    <View style={tw`z-50 absolute w-3/4 pt-3`}>
+      <GooglePlacesAutocomplete
+        placeholder="Pick up point"
+        styles={{ container: { flex: 0 }, textInput: { fontSize: 18 } }}
+        onPress={(data, details = null) => {
+          dispatch(
+            setOrigin({
+              location: details.geometry.location,
+              description: data.description,
+            })
+          );
+          dispatch(setDestination(null));
+        }}
+        fetchDetails={true}
+        returnKeyType={"search"}
+        enablePoweredByContainer={false}
+        minLength={2}
+        query={{
+          key: GOOGLE_MAPS_APIKEY,
+          language: "en",
+        }}
+        nearbyPlacesAPI="GooglePlacesSearch"
+        debounce={400}
+      />
+      <GooglePlacesAutocomplete
+        placeholder="Where to?"
+        styles={tw`bg-gray-200`}
+        onPress={(data, details = null) => {
+          dispatch(
+            setDestination({
+              location: details.geometry.location,
+              description: data.description,
+            })
+          );
+          navigation.navigate("RideOptionsCard");
+          //dispatch(setDestination(null));
+        }}
+        fetchDetails={true}
+        returnKeyType={"search"}
+        enablePoweredByContainer={false}
+        minLength={2}
+        query={{
+          key: GOOGLE_MAPS_APIKEY,
+          language: "en",
+        }}
+        nearbyPlacesAPI="GooglePlacesSearch"
+        debounce={400}
+      />
+
+      <Pressable style={tw`bg-gray-200 rounded-full `}>
+        <Text style={tw`text-white text-center font-bold`}>
+          current Location
+        </Text>
+      </Pressable>
     </View>
   );
 };

@@ -1,53 +1,46 @@
 import React, { useState } from "react";
-import { Keyboard, View, Button, Text, TextInput } from "react-native";
-import tw from "tailwind-react-native-classnames";
+import { StyleSheet, Text, View, Button, TextInput } from "react-native";
+//import auth from "@react-native-firebase/auth";
 
-export default function LoginScreen() {
-  const [phone, setPhone] = useState("");
+const LoginScreen = () => {
+  // If null, no SMS has been sent
+  const [confirm, setConfirm] = useState(null);
 
-  const [OTP, setOTP] = useState("");
-  const generateOTP = (length) => {
-    const digits = "0123456789";
-    let OTP = "";
-    for (let i = 0; i < length; i++) {
-      OTP += digits[Math.floor(Math.random() * 10)];
-    }
-    setOTP(OTP);
-    return OTP;
-  };
+  const [code, setCode] = useState("");
+
+  // // Handle the button press
+  // async function signInWithPhoneNumber(phoneNumber) {
+  //   const confirmation = await auth().signInWithPhoneNumber(phoneNumber);
+  //   setConfirm(confirmation);
+  // }
+
+  // async function confirmCode() {
+  //   try {
+  //     await confirm.confirm(code);
+  //   } catch (error) {
+  //     console.log("Invalid code.");
+  //   }
+  // }
+
+  // if (!confirm) {
+  //   return (
+  //     <View>
+  //       <Button
+  //         title="Phone Number Sign In"
+  //         onPress={() => signInWithPhoneNumber("+254705469866")}
+  //       />
+  //     </View>
+  //   );
+  // }
 
   return (
-    <View style={tw`flex-1 bg-yellow-300 items-center justify-center`}>
-      <Text style={tw`text-4xl text-white text-center font-bold`}>Login</Text>
-      <Text style={tw`text-lg text-black`}>
-        Enter your phone number to log in...
-      </Text>
-
-      <TextInput
-        style={tw`text-3xl text-white m-10 px-5 py-2 border-2 border-white`}
-        autoFocus={true}
-        value={phone}
-        maxLength={12}
-        onChangeText={(phone) => {
-          setPhone(phone);
-        }}
-        placeholder="07** *** ***"
-        placeholderTextColor="white"
-        keyboardType="numeric"
-        autoCompleteType="tel"
-      />
-      <Button
-        title="Submit"
-        style={tw`mx-auto h-44 w-44 rounded-full items-center bg-green-300`}
-        onPress={() => {
-          generateOTP(4);
-          navigation.navigate("OTP", {
-            OTP: OTP,
-            phone: phone,
-          });
-        }}
-        onSubmitEditing={Keyboard.dismiss}
-      />
+    <View>
+      <TextInput value={code} onChangeText={(text) => setCode(text)} />
+      <Button title="Confirm Code" onPress={() => confirmCode()} />
     </View>
   );
-}
+};
+
+export default LoginScreen;
+
+const styles = StyleSheet.create({});
