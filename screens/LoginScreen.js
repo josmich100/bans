@@ -116,4 +116,8 @@ export default function LoginScreen({ navigation }) {
       />
     </View>
   );
-}
+};
+
+export default LoginScreen;
+
+const styles = StyleSheet.create({});

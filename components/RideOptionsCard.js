@@ -51,9 +51,9 @@ const RideOptionsCard = ({ navigation }) => {
 
   return (
     <SafeAreaView>
-      <View style={tw`h-1/2 w-full bg-gray-300`}>
+      {/* <View style={tw`h-1/2 w-full bg-gray-300`}>
         <Map />
-      </View>
+      </View> */}
       <View>
         <View>
           <TouchableOpacity

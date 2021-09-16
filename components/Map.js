@@ -38,7 +38,6 @@ const Map = () => {
           dispatch(setTravelTime(data.rows[0].elements[0]));
         });
     };
-
     getTravelTime();
   }, [origin, destination, GOOGLE_MAPS_APIKEY]);
 

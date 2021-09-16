@@ -8,7 +8,6 @@ import * as Location from "expo-location";
 import { TouchableOpacity } from "react-native";
 
 const NavigateModal = () => {
-  const [modalOpen, setModalOpen] = useState(false);
   const [position, setPosition] = useState({
     latitude: -0.7749015,
     longitude: 34.9418074,
@@ -30,29 +29,21 @@ const NavigateModal = () => {
         console.log(err);
       });
     }
-  }, []);
+  }, [NavigateModal]);
   return (
     <SafeAreaView>
-      <View style={tw`h-full w-full`}>
+      <View
+        style={tw`h-1/4 w-5/6 rounded-md bg-green-300 m-auto mt-5 items-center`}
+      >
+        <SetRoute />
+      </View>
+      <View style={tw`h-3/4 w-full m-auto mt-5`}>
         {/* <Favorites /> */}
         <MapView
           style={tw`h-full mt-16`}
           initialRegion={position}
           showsUserLocation={true}
         />
-        <View style={[tw`items-center`]}>
-          {/* <TouchableOpacity
-            style={[
-              tw`absolute bottom-5 mx-0 p-3 rounded-lg items-center w-5/6 bg-yellow-300`,
-            ]}
-            onPress={() => {
-              setModalOpen(true);
-            }}
-          >
-            <Text style={tw`text-white text-lg font-bold`}>Set Route</Text>
-          </TouchableOpacity> */}
-          <SetRoute setOpenModal={setModalOpen} />
-        </View>
       </View>
     </SafeAreaView>
   );
