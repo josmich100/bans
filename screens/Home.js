@@ -9,7 +9,6 @@ import {
 } from "react-native";
 import tw from "tailwind-react-native-classnames";
 import NavOptions from "../components/NavOptions";
-import Logo from "../assets/logo.png";
 
 const Home = ({ navigation }) => {
   return (

@@ -1,5 +1,12 @@
 import React, { useState } from "react";
-import { Alert, Modal, Text, TouchableOpacity, View } from "react-native";
+import {
+  Alert,
+  Modal,
+  Text,
+  TouchableOpacity,
+  Pressable,
+  View,
+} from "react-native";
 import { GooglePlacesAutocomplete } from "react-native-google-places-autocomplete";
 import { setDestination, setOrigin } from "../slices/navSlice";
 import { GOOGLE_MAPS_APIKEY } from "@env";

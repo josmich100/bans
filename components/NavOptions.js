@@ -2,6 +2,7 @@ import React from "react";
 import { FlatList, Text, Image, View, TouchableOpacity } from "react-native";
 import tw from "tailwind-react-native-classnames";
 import { Icon } from "react-native-elements";
+import { useNavigation } from "@react-navigation/native";
 
 const data = [
   {
@@ -19,7 +20,8 @@ const data = [
   },
 ];
 
-const NavOptions = ({ navigation }) => {
+const NavOptions = () => {
+  const navigation = useNavigation();
   return (
     <FlatList
       style={tw`m-2`}
