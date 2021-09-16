@@ -3,51 +3,6 @@ import { Keyboard, View, Image, Button, Text, TextInput } from "react-native";
 import tw from "tailwind-react-native-classnames";
 import PhoneInput from "react-native-phone-input";
 
-// firebase
-//   .firestore()
-//   .collection("users")
-//   .where("phoneNumber", "==", this.state.phoneNumber)
-//   .get()
-//   .then((querySnapshot) => {
-//     if (!querySnapshot.empty) {
-//       // User found with this phone number.
-//       throw new Error("already-exists");
-//     }
-
-//     // change status
-//     this.setState({ status: "Sending confirmation code..." });
-
-//     // send confirmation OTP
-//     return firebase.auth().verifyPhoneNumber(this.state.phoneNumber);
-//   })
-//   .then((phoneAuthSnapshot) => {
-//     // verification sent
-//     this.setState({
-//       status: "Confirmation code sent.",
-//       verificationId: phoneAuthSnapshot.verificationId,
-//       showCodeInput: true, // shows input field such as react-native-confirmation-code-field
-//     });
-//   })
-//   .catch((error) => {
-//     let newStatus;
-//     if (error.message === "already-exists") {
-//       newStatus = "Sorry, this phone number is already in use.";
-//     } else {
-//       // Other internal error
-//       // see https://firebase.google.com/docs/reference/js/firebase.firestore.html#firestore-error-code
-//       // see https://firebase.google.com/docs/reference/js/firebase.auth.PhoneAuthProvider#verify-phone-number
-//       // probably 'unavailable' or 'deadline-exceeded' for loss of connection while querying users
-//       newStatus = "Failed to send verification code.";
-//       console.log(
-//         "Unexpected error during firebase operation: " + JSON.stringify(error)
-//       );
-//     }
-
-//     this.setState({
-//       status: newStatus,
-//       processing: false,
-//     });
-//   });
 
 export default function LoginScreen({ navigation }) {
   const phone = useRef();
