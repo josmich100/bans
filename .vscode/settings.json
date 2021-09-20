@@ -1,5 +1,4 @@
 {
     "autoimport.absolute": true,
-    "python.analysis.completeFunctionParens": true,
-    "editor.formatOnSave": true
+    "python.analysis.completeFunctionParens": true
 }

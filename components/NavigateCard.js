@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useCallback } from "react";
 import {
   StyleSheet,
   Text,
@@ -6,6 +6,7 @@ import {
   SafeAreaView,
   TouchableOpacity,
 } from "react-native";
+import firebase from "../firebase";
 import tw from "tailwind-react-native-classnames";
 import { useDispatch } from "react-redux";
 import { GooglePlacesAutocomplete } from "react-native-google-places-autocomplete";
@@ -20,10 +21,34 @@ const NavigateCard = () => {
   const dispatch = useDispatch();
   const windowHeight = Dimensions.get("window").height;
   const navigation = useNavigation();
+  const user = useCallback(
+    () => dispatch({ user }),
+    [dispatch]
+  );
+  // // Handle user state changes
+  // function onAuthStateChanged(user) {
+  //   setUser(user);
+  //   if (initializing) setInitializing(false);
+  // }
+
+  // useEffect(() => {
+  //   const subscriber = firebase.auth().onAuthStateChanged(onAuthStateChanged);
+  //   return subscriber; // unsubscribe on unmount
+  // }, []);
+
+  // if (initializing) return null;
+
+  // if (!user) {
+  //   <View>
+  //     <Text>No user</Text>
+  //   </View>
+  // }
+
   return (
     <SafeAreaView style={tw`bg-white flex-1`}>
       <Text style={tw`text-center py-5 text-2xl`}>Hey there Josiah</Text>
       <View style={tw`border-t border-gray-200 flex-shrink`}>
+        {console.log(user)}
         <GooglePlacesAutocomplete
           placeholder="Where to?"
           styles={{
@@ -41,6 +66,14 @@ const NavigateCard = () => {
                 description: data.description,
               })
             );
+            firebase
+              .database()
+              .ref("Travels/" + user.uid + "/destination")
+              .set({
+                latitude: details.geometry.location.lat,
+                longitude: details.geometry.location.lng,
+              });
+            
             navigation.navigate("RideOptionsCard");
             //dispatch(setDestination(null));
           }}
