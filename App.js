@@ -9,18 +9,67 @@ import LoginScreen from "./screens/LoginScreen";
 import OTP from "./screens/OTP";
 import Taxi from "./screens/Taxi";
 import CarHire from "./screens/CarHire";
-import { NavigationContainer } from "@react-navigation/native";
 import { SafeAreaProvider } from "react-native-safe-area-context";
+import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import { createDrawerNavigator } from "@react-navigation/drawer";
+
+const Stack = createNativeStackNavigator();
+const Tab = createBottomTabNavigator();
+const Drawer = createDrawerNavigator();
+
+function LogoTitle() {
+  return (
+    <>
+      <Image
+        style={{ width: 50, height: 50 }}
+        source={require("@expo/snack-static/react-native-logo.png")}
+      />
+    </>
+  );
+}
+
+function HomeStack() {
+  return (
+    <Tab.Navigator>
+      <Tab.Screen name="Get Taxi" component={Taxi}>
+        {() => (
+          <Drawer.Navigator>
+            <Drawer.Screen name="Get Taxi" component={Taxi} />
+            <Drawer.Screen name="Hire Car" component={CarHire} />
+          </Drawer.Navigator>
+        )}
+      </Tab.Screen>
+      <Tab.Screen name="Hire Car" component={CarHire}>
+        {() => (
+          <Drawer.Navigator>
+            <Drawer.Screen name="Get Taxi" component={Taxi} />
+            <Drawer.Screen name="Hire Car" component={CarHire} />
+          </Drawer.Navigator>
+        )}
+      </Tab.Screen>
+    </Tab.Navigator>
+  );
+}
 
 export default function App() {
-  const Stack = createNativeStackNavigator();
-
   return (
     <Provider store={store}>
       <NavigationContainer>
         <SafeAreaProvider>
-          <Stack.Navigator>
+          <Stack.Navigator
+            screenOptions={{
+              headerTitle: (props) => <LogoTitle {...props} />,
+              headerStyle: {
+                backgroundColor: "#f4511e",
+              },
+              headerTintColor: "#fff",
+              headerTitleStyle: {
+                fontWeight: "bold",
+              },
+            }}
+          >
             {/* <Stack.Screen
               name="Welcome"
               component={Welcome}
@@ -38,18 +87,21 @@ export default function App() {
             /> */}
             <Stack.Screen
               name="Home"
-              component={Home}
-              options={{ headerShown: false }}
+              component={HomeStack}
+              options={{
+                title: "Home",
+                headerShown: false,
+              }}
             />
             <Stack.Screen
               name="Taxi"
               component={Taxi}
-              options={{ headerShown: false }}
+              options={{ title: "Taxi", headerShown: false }}
             />
             <Stack.Screen
               name="CarHire"
               component={CarHire}
-              options={{ headerShown: false }}
+              options={{ title: "Car Hire", headerShown: false }}
             />
           </Stack.Navigator>
         </SafeAreaProvider>
