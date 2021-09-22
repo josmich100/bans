@@ -32,8 +32,8 @@ const NavigateModal = () => {
   }, [NavigateModal]);
   return (
     <SafeAreaView>
-      <View
-        style={tw`h-1/4 w-5/6 m-auto mt-5 items-center bg-white rounded-md`}
+      {/* <View
+        style={tw`h-1/4 w-5/6 rounded-md bg-green-300 m-auto mt-5 items-center`}
       >
       </View> */}
       <View style={tw`h-full w-full m-auto mt-5`}>
