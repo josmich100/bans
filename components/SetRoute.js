@@ -13,12 +13,16 @@ import { GOOGLE_MAPS_APIKEY } from "@env";
 import tw from "tailwind-react-native-classnames";
 import { Icon } from "react-native-vector-icons";
 import { useDispatch } from "react-redux";
+import firebase from "../firebase";
+import { useNavigation } from "@react-navigation/native";
 
 const SetRoute = () => {
   const dispatch = useDispatch();
+  const navigation = useNavigation();
+  const userId = firebase.auth().currentUser.uid;
 
   return (
-    <View style={tw`z-50 absolute w-3/4 pt-3`}>
+    <View style={tw`z-50 absolute w-full pt-3`}>
       <GooglePlacesAutocomplete
         placeholder="Pick up point"
         styles={{ container: { flex: 0 }, textInput: { fontSize: 18 } }}
@@ -29,6 +33,13 @@ const SetRoute = () => {
               description: data.description,
             })
           );
+          firebase
+            .database()
+            .ref("Travels/" + userId + "/origin")
+            .set({
+              latitude: details.geometry.location.lat,
+              longitude: details.geometry.location.lng,
+            });
           dispatch(setDestination(null));
         }}
         fetchDetails={true}
@@ -42,6 +53,7 @@ const SetRoute = () => {
         nearbyPlacesAPI="GooglePlacesSearch"
         debounce={400}
       />
+      {console.log(firebase.auth().currentUser.uid)}
       <GooglePlacesAutocomplete
         placeholder="Where to?"
         styles={tw`bg-gray-200`}
@@ -52,6 +64,19 @@ const SetRoute = () => {
               description: data.description,
             })
           );
+          firebase
+            .database()
+            .ref("Travels/" + userId + "/destination")
+            .set({
+              latitude: details.geometry.location.lat,
+              longitude: details.geometry.location.lng,
+            });
+          firebase
+            .database()
+            .ref("Travels/" + userId + "/status")
+            .set({
+              status: "Active",
+            });
           navigation.navigate("RideOptionsCard");
           //dispatch(setDestination(null));
         }}

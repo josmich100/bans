@@ -25,6 +25,18 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
+    },
+    "extra": {
+      "firebase": {
+        "apiKey": "AIzaSyC54WtrllFITqU6HlPVMmHzwED2R1oQnT0",
+        "authDomain": "ananab-8039a.firebaseapp.com",
+        "projectId": "ananab-8039a",
+        "databaseURL": "https://ananab-8039a-default-rtdb.europe-west1.firebasedatabase.app/",
+        "storageBucket": "ananab-8039a.appspot.com",
+        "messagingSenderId": "440604722753",
+        "appId": "1:440604722753:web:9177d9774cec7609f3e8c0",
+        "measurementId": "G-8GDL55WNYM"
+      }
     }
   }
 }

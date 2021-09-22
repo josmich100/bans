@@ -2,9 +2,10 @@ import React, { useState, useRef } from "react";
 import { Keyboard, View, Image, Button, Text, TextInput } from "react-native";
 import tw from "tailwind-react-native-classnames";
 import PhoneInput from "react-native-phone-input";
+import { useNavigation } from "@react-navigation/native";
 
-
-export default function LoginScreen({ navigation }) {
+export default function LoginScreen() {
+  const navigation = useNavigation();
   const phone = useRef();
   const [input, setInput] = useState("");
   const [country, setCountry] = useState("ke");

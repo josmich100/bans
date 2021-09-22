@@ -7,40 +7,31 @@ import {
   TouchableOpacity,
   FlatList,
 } from "react-native";
-import MapView, { Marker } from "react-native-maps";
-import MapViewDirections from "react-native-maps-directions";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import tw from "tailwind-react-native-classnames";
 import {
   selectDestination,
   selectOrigin,
-  setTravelTime,
+  selectTravelTime,
 } from "../slices/navSlice";
-import { GOOGLE_MAPS_APIKEY } from "@env";
 import { Icon } from "react-native-elements";
 import Map from "./Map";
 
 const data = [
   {
     id: "Economical",
-    plate: "KDA 001",
-    icon: "home",
+    src: "../assets/logo.png",
     cost: 1,
-    distance: "Keroka,Kenya",
   },
   {
     id: "Business",
-    plate: "KDA 001",
-    icon: "briefcase",
+    src: "../assets/logo.png",
     cost: 1.25,
-    distance: "Keumbu,Kenya",
   },
   {
     id: "Luxury",
-    plate: "KDA 001",
-    icon: "home",
+    src: "../assets/logo.png",
     cost: 1.6,
-    distance: "Keroka,Kenya",
   },
 ];
 
@@ -48,12 +39,13 @@ const RideOptionsCard = ({ navigation }) => {
   const origin = useSelector(selectOrigin);
   const destination = useSelector(selectDestination);
   const dispatch = useDispatch();
+  const travelTime = useSelector(selectTravelTime);
 
   return (
     <SafeAreaView>
-      {/* <View style={tw`h-1/2 w-full bg-gray-300`}>
+      <View style={tw`h-1/2 w-full bg-gray-300`}>
         <Map />
-      </View> */}
+      </View>
       <View>
         <View>
           <TouchableOpacity
@@ -68,21 +60,27 @@ const RideOptionsCard = ({ navigation }) => {
           data={data}
           keyExtractor={(item) => item.id}
           ItemSeparatorComponent={() => (
-            <View style={[tw`bg-gray-200`, { height: 0.5 }]} />
+            <View style={[tw`bg-gray-200 `, { height: 0.5 }]} />
           )}
-          renderItem={({ item: { id, plate, cost, distance, icon } }) => (
-            <TouchableOpacity style={tw`flex-row items-center p-5`}>
-              <Icon
-                style={tw`mr-4 rounded-full bg-gray-300 p-3`}
-                name={icon}
-                type="ionicon"
-                color="white"
-                size={18}
-              />
+          renderItem={({ item: { id, src, cost } }) => (
+            <TouchableOpacity
+              style={tw`flex-row items-center p-5 justify-evenly`}
+            >
+              {/* <Image
+                style={tw`h-24 w-24 mr-4 rounded-full bg-gray-300 p-3`}
+                source={require(src)}
+              /> */}
               <View>
-                <Text style={tw`font-bold text-lg`}>{plate}</Text>
-                <Text style={tw`text-gray-500 text-sm`}>{id}</Text>
-                <Text style={tw`text-gray-500`}>{cost}</Text>
+                <Text style={tw`font-bold text-lg`}>{id}</Text>
+                <Text style={tw`text-gray-500 text-lg`}>
+                  {travelTime?.distance.text}
+                </Text>
+                <Text style={tw`text-gray-500 text-lg`}>
+                  {travelTime?.duration.text}
+                </Text>
+              </View>
+              <View>
+                <Text style={tw`font-bold text-2xl`}>KES. {cost * 99}</Text>
               </View>
             </TouchableOpacity>
           )}

@@ -2,17 +2,23 @@ import React, { useEffect, useRef, useState } from "react";
 import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
 import tw from "tailwind-react-native-classnames";
 import MapView, { Marker } from "react-native-maps";
-import { selectOrigin, selectDestination } from "../slices/navSlice";
-import { useSelector } from "react-redux";
+import {
+  selectOrigin,
+  selectDestination,
+  selectTravelTime,
+  setTravelTime,
+} from "../slices/navSlice";
+import { useDispatch, useSelector } from "react-redux";
 import MapViewDirections from "react-native-maps-directions";
 import { GOOGLE_MAPS_APIKEY } from "@env";
 
 const Map = () => {
-  
+  const travelTime = useSelector(selectTravelTime);
   const origin = useSelector(selectOrigin);
   const destination = useSelector(selectDestination);
   //const { modalVisible, setModalVisible } = SetRoute();
   const mapRef = useRef(null);
+  const dispatch = useDispatch();
   useEffect(() => {
     if (!origin || !destination) return;
 
@@ -21,6 +27,7 @@ const Map = () => {
       "origin",
       "destination",
       {
+        animated: true,
         edgePadding: { top: 50, right: 50, bottom: 50, left: 50 },
       },
     ]);
@@ -46,11 +53,12 @@ const Map = () => {
       <MapView
         ref={mapRef}
         style={tw`flex-1`}
+        mapType="mutedStandard"
         initialRegion={{
           latitude: origin.location.lat,
           longitude: origin.location.lng,
-          latitudeDelta: 0.005,
-          longitudeDelta: 0.005,
+          latitudeDelta: 0.02,
+          longitudeDelta: 0.02,
         }}
       >
         {origin && destination && (
@@ -86,50 +94,8 @@ const Map = () => {
           />
         )}
       </MapView>
-      
     </View>
   );
 };
 
 export default Map;
-
-// const Map = () => {
-//   const origin = useSelector(selectOrigin);
-//   const destination = useSelector(selectDestination);
-//   return (
-//     <MapView
-//       style={tw`flex-1`}
-//       initialRegion={{
-//         latitude: origin.location.lat,
-//         longitude: origin.location.lng,
-//         latitudeDelta: 0.005,
-//         longitudeDelta: 0.005,
-//       }}
-//     >
-//       {
-//       origin && destination &&(
-//         <MapViewDirections
-//           lineDashPattern={[0]}
-//           origin= {origin.description}
-//           destination= {destination.description}
-//           apikey= {GOOGLE_MAPS_APIKEY}
-//           strokeWidth = {3}
-//           strokeColor = "blue"
-//         />
-//       )}
-//       {origin?.location && (
-//         <Marker
-//           coordinate={{
-//             latitude: origin.location.lat,
-//             longitude: origin.location.lng,
-//           }}
-//           title="Current Location"
-//           decription={origin.description}
-//           identifier="origin"
-//         />
-//       )}
-//     </MapView>
-//   );
-// };
-
-// export default Map;

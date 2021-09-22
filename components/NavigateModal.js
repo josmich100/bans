@@ -32,13 +32,13 @@ const NavigateModal = () => {
   }, [NavigateModal]);
   return (
     <SafeAreaView>
-      <View
+      {/* <View
         style={tw`h-1/4 w-5/6 rounded-md bg-green-300 m-auto mt-5 items-center`}
       >
-        <SetRoute />
-      </View>
-      <View style={tw`h-3/4 w-full m-auto mt-5`}>
+      </View> */}
+      <View style={tw`h-full w-full m-auto mt-5`}>
         {/* <Favorites /> */}
+        <SetRoute />
         <MapView
           style={tw`h-full mt-16`}
           initialRegion={position}
