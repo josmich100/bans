@@ -1,17 +1,9 @@
 import React, { useState } from "react";
-import {
-  Alert,
-  Modal,
-  Text,
-  TouchableOpacity,
-  Pressable,
-  View,
-} from "react-native";
+import { Alert, Modal, Text, TouchableOpacity, View } from "react-native";
 import { GooglePlacesAutocomplete } from "react-native-google-places-autocomplete";
 import { setDestination, setOrigin } from "../slices/navSlice";
 import { GOOGLE_MAPS_APIKEY } from "@env";
 import tw from "tailwind-react-native-classnames";
-import { Icon } from "react-native-vector-icons";
 import { useDispatch } from "react-redux";
 import firebase from "../firebase";
 import { useNavigation } from "@react-navigation/native";
@@ -71,12 +63,7 @@ const SetRoute = () => {
               latitude: details.geometry.location.lat,
               longitude: details.geometry.location.lng,
             });
-          firebase
-            .database()
-            .ref("Travels/" + userId + "/status")
-            .set({
-              status: "Active",
-            });
+
           navigation.navigate("RideOptionsCard");
           //dispatch(setDestination(null));
         }}
@@ -92,11 +79,11 @@ const SetRoute = () => {
         debounce={400}
       />
 
-      <Pressable style={tw`bg-gray-200 rounded-full `}>
+      <TouchableOpacity style={tw`bg-gray-200 rounded-full `}>
         <Text style={tw`text-white text-center font-bold`}>
           current Location
         </Text>
-      </Pressable>
+      </TouchableOpacity>
     </View>
   );
 };
