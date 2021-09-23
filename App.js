@@ -12,6 +12,8 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { createDrawerNavigator } from "@react-navigation/drawer";
 import auth from "@react-native-firebase/auth";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import { createDrawerNavigator } from "@react-navigation/drawer";
 
 const Stack = createNativeStackNavigator();
 const Tab = createBottomTabNavigator();
@@ -85,7 +87,7 @@ export default function App() {
             /> */}
             <Stack.Screen
               name="Home"
-              component={HomeStack}
+              component={Home}
               options={{
                 title: "Home",
                 headerShown: false,
