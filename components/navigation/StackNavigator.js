@@ -1,37 +1,126 @@
-// ./navigation/StackNavigator.js
-
 import React from "react";
-import { createStackNavigator } from "@react-navigation/stack";
+import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
-import Home from "../screens/Home";
-import About from "../screens/About";
-import Contact from "../screens/Contact";
+import Welcome from "../../screens/Welcome";
+import Login from "../../screens/LoginScreen";
+import Home from "../../screens/Home";
+import Profile from "../../screens/Profile";
+import Settings from "../../screens/Settings";
+import Taxi from "../../screens/Taxi";
+import CarHire from "../../screens/CarHire";
 
-const Stack = createStackNavigator();
+// function LogoTitle() {
+//   return (
+//     <>
+//       <Image
+//         style={{ width: 50, height: 50 }}
+//         source={require("../../assets/logo.png")}
+//       />
+//     </>
+//   );
+// }
 
 const screenOptionStyle = {
+  // headerTitle: (props) => <LogoTitle {...props} />,
   headerStyle: {
-    backgroundColor: "#9AC4F8",
+    backgroundColor: "#f4511e",
   },
-  headerTintColor: "white",
+  headerTintColor: "#fff",
+  headerTitleStyle: {
+    fontWeight: "bold",
+  },
   headerBackTitle: "Back",
 };
 
+const Stack = createNativeStackNavigator();
+
 const MainStackNavigator = () => {
   return (
-    <Stack.Navigator screenOptions={screenOptionStyle}>
-      <Stack.Screen name="Home" component={Home} />
-      <Stack.Screen name="About" component={About} />
+    <Stack.Navigator screenOptions={screenOptionStyle} initialRouteName="Home">
+      <Stack.Screen
+        name="Welcome"
+        component={Welcome}
+        options={{ headerTitle: false }}
+      />
+      <Stack.Screen
+        name="Login"
+        component={Login}
+        options={{ headerTitle: false }}
+      />
+      <Stack.Screen
+        name="Home"
+        component={Home}
+        options={{ headerTitle: false }}
+      />
+      <Stack.Screen
+        name="Profile"
+        component={Profile}
+        options={{ headerTitle: false }}
+      />
+      <Stack.Screen
+        name="Settings"
+        component={Settings}
+        options={{ headerTitle: false }}
+      />
+      <Stack.Screen
+        name="Taxi"
+        component={Taxi}
+        options={{ headerTitle: false }}
+      />
+      <Stack.Screen
+        name="CarHire"
+        component={CarHire}
+        options={{ headerTitle: false }}
+      />
     </Stack.Navigator>
   );
 };
 
-const ContactStackNavigator = () => {
+const TaxiStackNavigator = () => {
   return (
-    <Stack.Navigator screenOptions={screenOptionStyle}>
-      <Stack.Screen name="Contact" component={Contact} />
+    <Stack.Navigator screenOptions={screenOptionStyle} initialRouteName="Taxi">
+      <Stack.Screen
+        name="Taxi"
+        component={Taxi}
+        options={{ headerTitle: false }}
+      />
+      <Stack.Screen
+        name="Profile"
+        component={Profile}
+        options={{ headerTitle: false }}
+      />
+      <Stack.Screen
+        name="Settings"
+        component={Settings}
+        options={{ headerTitle: false }}
+      />
     </Stack.Navigator>
   );
 };
 
-export { MainStackNavigator, ContactStackNavigator };
+const CarHireStackNavigator = () => {
+  return (
+    <Stack.Navigator
+      screenOptions={screenOptionStyle}
+      initialRouteName="CarHire"
+    >
+      <Stack.Screen
+        name="CarHire"
+        component={CarHire}
+        options={{ headerTitle: false }}
+      />
+      <Stack.Screen
+        name="Profile"
+        component={Profile}
+        options={{ headerTitle: false }}
+      />
+      <Stack.Screen
+        name="Settings"
+        component={Settings}
+        options={{ headerTitle: false }}
+      />
+    </Stack.Navigator>
+  );
+};
+
+export { MainStackNavigator, TaxiStackNavigator, CarHireStackNavigator };
