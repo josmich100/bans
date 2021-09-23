@@ -9,6 +9,8 @@ import CarHire from "./screens/CarHire";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import { NavigationContainer } from "@react-navigation/native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import { createDrawerNavigator } from "@react-navigation/drawer";
 import auth from "@react-native-firebase/auth";
 
 const Stack = createNativeStackNavigator();
@@ -20,7 +22,7 @@ function LogoTitle() {
     <>
       <Image
         style={{ width: 50, height: 50 }}
-        source={require("@expo/snack-static/react-native-logo.png")}
+        source={require("./assets/logo.png")}
       />
     </>
   );
