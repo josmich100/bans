@@ -7,35 +7,41 @@ import { useNavigation } from "@react-navigation/native";
 const data = [
   {
     id: "24",
-    title: "Taxi Screen",
-    image: "https://www.fremont.gov/ImageRepository/Document?documentID=42933",
+    title: "Get Taxi",
+    icon: "taxi",
     screen: "Taxi",
   },
   {
     id: "26",
-    title: "Car Hire",
-    image:
-      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRGQCN4nS8ZJXDiA6Z_lzucgVVmA3lLlPFxPw&usqp=CAU",
+    title: "Car 4 Hire",
+    icon: "car-side",
     screen: "CarHire",
   },
 ];
 
 const NavOptions = (props) => {
   const navigation = useNavigation();
+
   return (
     <FlatList
-      style={tw`m-2`}
+      style={tw`m-2 p-2`}
       data={data}
       keyExtractor={(item) => item.id}
       renderItem={({ item }) => (
         <TouchableOpacity
           onPress={() => navigation.navigate(item.screen)}
-          style={tw`mx-auto mb-5 h-44 w-44 rounded-full items-center justify-center bg-yellow-300`}
+          style={tw`h-36 w-36 items-center justify-center mx-auto mb-5 rounded-full bg-yellow-300`}
         >
           <View style={tw`items-center`}>
-            <Image
-              style={[tw`w-24 h-24`, { resizeMode: "contain" }]}
-              source={{ uri: item.image }}
+            {/* <Image
+              style={[tw`w-20 h-20`, { resizeMode: "contain" }]}
+              source={{ uri: item.icon }}
+            /> */}
+            <Icon
+              type="font-awesome-5"
+              name={item.icon}
+              size={48}
+              color="#000"
             />
             <Text style={tw`text-2xl font-bold`}>{item.title}</Text>
           </View>

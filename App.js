@@ -6,7 +6,6 @@ import { store } from "./store";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 import { NavigationContainer } from "@react-navigation/native";
 
-import { AuthStack } from "./components/navigation/StackNavigator";
 import MainNavigator from "./components/navigation/TabNavigator";
 
 export default function App() {

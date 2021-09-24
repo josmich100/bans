@@ -2,6 +2,7 @@ import React, { useState, useRef, useEffect } from "react";
 import {
   SafeAreaView,
   View,
+  ScrollView,
   Image,
   Text,
   TextInput,
@@ -134,10 +135,10 @@ const Home = () => {
 
   return (
     <SafeAreaView>
-      <View style={tw`h-full p-10 bg-white items-center justify-center`}>
+      <View style={tw`bg-white items-center justify-center`}>
         <View style={tw`items-center m-0`}>
           <Image
-            style={[tw`mb-3 w-44 h-24`]}
+            style={[tw`w-52 h-24`]}
             source={require("../assets/splash.png")}
           />
         </View>
