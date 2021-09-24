@@ -8,10 +8,16 @@ import Profile from "../../screens/Profile";
 import Settings from "../../screens/Settings";
 import Taxi from "../../screens/Taxi";
 import CarHire from "../../screens/CarHire";
-
 import RideOptionsCard from "../RideOptionsCard";
 import NavigateModal from "../NavigateModal";
 import HireCard from "../HireCard";
+
+import {
+  AuthDrawer,
+  CarHireDrawer,
+  MainDrawer,
+  TaxiDrawer,
+} from "./DrawerNavigator";
 
 // function LogoTitle() {
 //   return (
@@ -24,33 +30,21 @@ import HireCard from "../HireCard";
 //   );
 // }
 
-const screenOptionStyle = {
-  // headerTitle: (props) => <LogoTitle {...props} />,
-  headerStyle: {
-    backgroundColor: "#f4511e",
-  },
-  headerTintColor: "#fff",
-  headerTitleStyle: {
-    fontWeight: "bold",
-  },
-  headerBackTitle: "Back",
-};
-
 const Stack = createNativeStackNavigator();
 
 const AuthStack = () => {
   return (
-    <Stack.Navigator screenOptions={screenOptionStyle}>
-      <Stack.Screen name="Welcome" component={Welcome} />
-      <Stack.Screen name="Login" component={Login} />
+    <Stack.Navigator screenOptions={{ headerShown: false }}>
+      <Stack.Screen name="Welcome" component={AuthDrawer} />
+      <Stack.Screen name="Login" component={AuthDrawer} />
     </Stack.Navigator>
   );
 };
 
 const MainStack = () => {
   return (
-    <Stack.Navigator screenOptions={screenOptionStyle}>
-      <Stack.Screen name="Home" component={Home} />
+    <Stack.Navigator screenOptions={{ headerShown: false }}>
+      <Stack.Screen name="Home" component={MainDrawer} />
       <Stack.Screen name="Profile" component={Profile} />
       <Stack.Screen name="Settings" component={Settings} />
     </Stack.Navigator>
@@ -59,8 +53,8 @@ const MainStack = () => {
 
 const TaxiStack = () => {
   return (
-    <Stack.Navigator screenOptions={screenOptionStyle}>
-      <Stack.Screen name="Taxi" component={Taxi} />
+    <Stack.Navigator screenOptions={{ headerShown: false }}>
+      <Stack.Screen name="Taxi" component={TaxiDrawer} />
       <Stack.Screen name="Profile" component={Profile} />
       <Stack.Screen name="Settings" component={Settings} />
       <Stack.Screen name="NavigateModal" component={NavigateModal} />
@@ -71,8 +65,8 @@ const TaxiStack = () => {
 
 const CarHireStack = () => {
   return (
-    <Stack.Navigator screenOptions={screenOptionStyle}>
-      <Stack.Screen name="CarHire" component={CarHire} />
+    <Stack.Navigator screenOptions={{ headerShown: false }}>
+      <Stack.Screen name="CarHire" component={CarHireDrawer} />
       <Stack.Screen name="Profile" component={Profile} />
       <Stack.Screen name="Settings" component={Settings} />
       <Stack.Screen name="HireCard" component={HireCard} />
