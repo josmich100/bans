@@ -134,11 +134,11 @@ const Home = () => {
   }
 
   return (
-    <SafeAreaView>
-      <View style={tw`bg-white items-center justify-center`}>
+    <SafeAreaView style={tw`h-full bg-black`}>
+      <View style={tw`bg-black mt-5 items-center justify-center`}>
         <View style={tw`items-center m-0`}>
           <Image
-            style={[tw`w-52 h-24`]}
+            style={[tw`w-56 h-24`]}
             source={require("../assets/splash.png")}
           />
         </View>

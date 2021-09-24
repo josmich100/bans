@@ -14,7 +14,7 @@ export default function LoginScreen() {
     <View style={tw`flex flex-1 items-center justify-center bg-white`}>
       <View style={tw`items-center m-0`}>
         <Image
-          style={[tw`w-52 h-24`]}
+          style={[tw`w-56 h-24`]}
           source={require("../assets/splash.png")}
         />
         <Text style={tw`text-4xl text-black text-center font-bold`}>Login</Text>

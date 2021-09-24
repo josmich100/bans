@@ -21,7 +21,6 @@ const data = [
 
 const NavOptions = (props) => {
   const navigation = useNavigation();
-
   return (
     <FlatList
       style={tw`m-2 p-2`}
@@ -30,7 +29,10 @@ const NavOptions = (props) => {
       renderItem={({ item }) => (
         <TouchableOpacity
           onPress={() => navigation.navigate(item.screen)}
-          style={tw`h-36 w-36 items-center justify-center mx-auto mb-5 rounded-full bg-yellow-300`}
+          style={[
+            tw`h-36 w-36 items-center justify-center mx-auto mb-5 rounded-full`,
+            { backgroundColor: "#ffce00" },
+          ]}
         >
           <View style={tw`items-center`}>
             {/* <Image
