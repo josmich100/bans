@@ -2,11 +2,13 @@ import React from "react";
 import { StyleSheet, Text, View } from "react-native";
 import tw from "tailwind-react-native-classnames";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
+
 import NavigateModal from "../components/NavigateModal";
 import RideOptionsCard from "../components/RideOptionsCard";
 
+const Stack = createNativeStackNavigator();
+
 const Taxi = () => {
-  const Stack = createNativeStackNavigator();
   return (
     <View style={tw`h-full`}>
       <Stack.Navigator>

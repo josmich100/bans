@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { View, Button, TouchableOpacity, TextInput, Text } from "react-native";
+import { View, Button, TouchableOpacity, TextInput, Text, StyleSheet } from "react-native";
 import firebase from "../firebase";
 
 function Login() {

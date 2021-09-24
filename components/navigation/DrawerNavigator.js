@@ -1,31 +1,18 @@
 import React from "react";
 import { createDrawerNavigator } from "@react-navigation/drawer";
 
-import { TaxiStackNavigator, CarHireStackNavigator } from "./StackNavigator";
-import TabNavigator from "./TabNavigator";
+import { MainTabs, TaxiTabs, CarHireTabs } from "./TabNavigator";
 
 const Drawer = createDrawerNavigator();
 
-const DrawerNavigator = () => {
+const Drawers = () => {
   return (
-    <Drawer.Navigator>
-      <Drawer.Screen
-        name="Home"
-        component={TabNavigator}
-        options={{ headerTitle: false }}
-      />
-      <Drawer.Screen
-        name="Taxi"
-        component={TaxiStackNavigator}
-        options={{ headerTitle: false }}
-      />
-      <Drawer.Screen
-        name="CarHire"
-        component={CarHireStackNavigator}
-        options={{ headerTitle: false }}
-      />
+    <Drawer.Navigator screenOptions={{ headerShown: false }}>
+      <Drawer.Screen name="Home" component={MainTabs} />
+      <Drawer.Screen name="Taxi" component={TaxiTabs} />
+      <Drawer.Screen name="CarHire" component={CarHireTabs} />
     </Drawer.Navigator>
   );
 };
 
-export default DrawerNavigator;
+export default Drawers;

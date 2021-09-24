@@ -9,6 +9,10 @@ import Settings from "../../screens/Settings";
 import Taxi from "../../screens/Taxi";
 import CarHire from "../../screens/CarHire";
 
+import RideOptionsCard from "../RideOptionsCard";
+import NavigateModal from "../NavigateModal";
+import HireCard from "../HireCard";
+
 // function LogoTitle() {
 //   return (
 //     <>
@@ -34,93 +38,46 @@ const screenOptionStyle = {
 
 const Stack = createNativeStackNavigator();
 
-const MainStackNavigator = () => {
+const AuthStack = () => {
   return (
-    <Stack.Navigator screenOptions={screenOptionStyle} initialRouteName="Home">
-      <Stack.Screen
-        name="Welcome"
-        component={Welcome}
-        options={{ headerTitle: false }}
-      />
-      <Stack.Screen
-        name="Login"
-        component={Login}
-        options={{ headerTitle: false }}
-      />
-      <Stack.Screen
-        name="Home"
-        component={Home}
-        options={{ headerTitle: false }}
-      />
-      <Stack.Screen
-        name="Profile"
-        component={Profile}
-        options={{ headerTitle: false }}
-      />
-      <Stack.Screen
-        name="Settings"
-        component={Settings}
-        options={{ headerTitle: false }}
-      />
-      <Stack.Screen
-        name="Taxi"
-        component={Taxi}
-        options={{ headerTitle: false }}
-      />
-      <Stack.Screen
-        name="CarHire"
-        component={CarHire}
-        options={{ headerTitle: false }}
-      />
+    <Stack.Navigator screenOptions={screenOptionStyle}>
+      <Stack.Screen name="Welcome" component={Welcome} />
+      <Stack.Screen name="Login" component={Login} />
     </Stack.Navigator>
   );
 };
 
-const TaxiStackNavigator = () => {
+const MainStack = () => {
   return (
-    <Stack.Navigator screenOptions={screenOptionStyle} initialRouteName="Taxi">
-      <Stack.Screen
-        name="Taxi"
-        component={Taxi}
-        options={{ headerTitle: false }}
-      />
-      <Stack.Screen
-        name="Profile"
-        component={Profile}
-        options={{ headerTitle: false }}
-      />
-      <Stack.Screen
-        name="Settings"
-        component={Settings}
-        options={{ headerTitle: false }}
-      />
+    <Stack.Navigator screenOptions={screenOptionStyle}>
+      <Stack.Screen name="Home" component={Home} />
+      <Stack.Screen name="Profile" component={Profile} />
+      <Stack.Screen name="Settings" component={Settings} />
     </Stack.Navigator>
   );
 };
 
-const CarHireStackNavigator = () => {
+const TaxiStack = () => {
   return (
-    <Stack.Navigator
-      screenOptions={screenOptionStyle}
-      initialRouteName="CarHire"
-    >
-      <Stack.Screen
-        name="CarHire"
-        component={CarHire}
-        options={{ headerTitle: false }}
-      />
-      <Stack.Screen
-        name="Profile"
-        component={Profile}
-        options={{ headerTitle: false }}
-      />
-      <Stack.Screen
-        name="Settings"
-        component={Settings}
-        options={{ headerTitle: false }}
-      />
+    <Stack.Navigator screenOptions={screenOptionStyle}>
+      <Stack.Screen name="Taxi" component={Taxi} />
+      <Stack.Screen name="Profile" component={Profile} />
+      <Stack.Screen name="Settings" component={Settings} />
+      <Stack.Screen name="NavigateModal" component={NavigateModal} />
+      <Stack.Screen name="RideOptionsCard" component={RideOptionsCard} />
     </Stack.Navigator>
   );
 };
 
-export { MainStackNavigator, TaxiStackNavigator, CarHireStackNavigator };
+const CarHireStack = () => {
+  return (
+    <Stack.Navigator screenOptions={screenOptionStyle}>
+      <Stack.Screen name="CarHire" component={CarHire} />
+      <Stack.Screen name="Profile" component={Profile} />
+      <Stack.Screen name="Settings" component={Settings} />
+      <Stack.Screen name="HireCard" component={HireCard} />
+    </Stack.Navigator>
+  );
+};
+
+export { AuthStack, MainStack, TaxiStack, CarHireStack };

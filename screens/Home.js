@@ -7,12 +7,11 @@ import Constants from "expo-constants";
 
 import NavOptions from "../components/NavOptions";
 import Login from "../components/Login";
-import MainNavigator from "../components/navigation/DrawerNavigator";
 
 const Home = () => {
   const recaptchaVerifier = useRef(null);
   const attemptInvisibleVerification = false;
-  
+
   const [initializing, setInitializing] = useState(true);
   const [user, setUser] = useState(null);
 
@@ -30,7 +29,7 @@ const Home = () => {
 
   if (user == null) {
     return (
-      <View style={{ padding: 20, marginTop: 50 }}>
+      <View style={tw`p-10 mt-10`}>
         <FirebaseRecaptchaVerifierModal
           ref={recaptchaVerifier}
           firebaseConfig={Constants.manifest.extra.firebase}
@@ -41,9 +40,10 @@ const Home = () => {
       </View>
     );
   }
+
   return (
     <SafeAreaView>
-      <View style={tw`p-10 bg-white items-center justify-center`}>
+      <View style={tw`h-full p-10 bg-white items-center justify-center`}>
         <View style={tw`items-center m-0`}>
           <Image
             style={[tw`mb-3 w-44 h-24`]}

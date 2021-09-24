@@ -1,34 +1,31 @@
 import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 
-import {
-  MainStackNavigator,
-  TaxiStackNavigator,
-  CarHireStackNavigator,
-} from "./StackNavigator";
+import { MainStack, TaxiStack, CarHireStack } from "./StackNavigator";
 
 const Tab = createBottomTabNavigator();
 
-const BottomTabNavigator = () => {
+const MainTabs = () => {
   return (
-    <Tab.Navigator>
-      <Tab.Screen
-        name="Home"
-        component={MainStackNavigator}
-        options={{ headerTitle: false }}
-      />
-      <Tab.Screen
-        name="Taxi"
-        component={TaxiStackNavigator}
-        options={{ headerTitle: false }}
-      />
-      <Tab.Screen
-        name="CarHire"
-        component={CarHireStackNavigator}
-        options={{ headerTitle: false }}
-      />
+    <Tab.Navigator screenOptions={{ headerShown: false }}>
+      <Tab.Screen name="Home" component={MainStack} />
     </Tab.Navigator>
   );
 };
 
-export default BottomTabNavigator;
+const TaxiTabs = () => {
+  return (
+    <Tab.Navigator screenOptions={{ headerShown: false }}>
+      <Tab.Screen name="Taxi" component={TaxiStack} />
+    </Tab.Navigator>
+  );
+};
+const CarHireTabs = () => {
+  return (
+    <Tab.Navigator screenOptions={{ headerShown: false }}>
+      <Tab.Screen name="CarHire" component={CarHireStack} />
+    </Tab.Navigator>
+  );
+};
+
+export { MainTabs, TaxiTabs, CarHireTabs };
