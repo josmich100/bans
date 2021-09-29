@@ -1,11 +1,10 @@
 import Geolocation from "react-native-geolocation-service";
 import React, { useEffect, useState } from "react";
-import { View, Text, SafeAreaView } from "react-native";
+import { View, Text, SafeAreaView, TouchableOpacity } from "react-native";
 import MapView from "react-native-maps";
 import tw from "tailwind-react-native-classnames";
 import SetRoute from "./SetRoute";
 import * as Location from "expo-location";
-import { TouchableOpacity } from "react-native";
 
 const NavigateModal = () => {
   const [position, setPosition] = useState({

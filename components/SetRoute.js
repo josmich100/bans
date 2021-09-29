@@ -17,7 +17,7 @@ const SetRoute = () => {
     <View style={tw`z-50 absolute w-full pt-3`}>
       <GooglePlacesAutocomplete
         placeholder="Pick up point"
-        styles={{ container: { flex: 0 }, textInput: { fontSize: 18 } }}
+        style={{ container: { flex: 0 }, textInput: { fontSize: 18 } }}
         onPress={(data, details = null) => {
           dispatch(
             setOrigin({
@@ -48,7 +48,7 @@ const SetRoute = () => {
       {console.log(firebase.auth().currentUser.uid)}
       <GooglePlacesAutocomplete
         placeholder="Where to?"
-        styles={tw`bg-gray-200`}
+        style={tw`bg-gray-200`}
         onPress={(data, details = null) => {
           dispatch(
             setDestination({

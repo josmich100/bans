@@ -18,6 +18,8 @@ data = [
     title: "Login",
     body: "Phasellus ullamcorper ipsum rutrum nunc. Nullam quis ante. Etiam ultricies nisi vel augue. Aenean tellus metus, bibendum sed, posuere ac, mattis non, nunc.",
     imgUrl: "https://picsum.photos/id/12/200/300",
+    button:
+      "{/* <TouchableOpacity title='Login' style={tw`h-6 w-16 rounded-full items-center bg-blue-400`} onPress={() => {navigation.navigate('Login');}}><Text style={tw`text-white text-lg font-bold`}>Login</Text></TouchableOpacity> */}",
   },
 ];
 

@@ -7,15 +7,14 @@ import { useNavigation } from "@react-navigation/native";
 const data = [
   {
     id: "24",
-    title: "Taxi Screen",
-    image: "https://www.fremont.gov/ImageRepository/Document?documentID=42933",
+    title: "Get Taxi",
+    icon: "taxi",
     screen: "Taxi",
   },
   {
     id: "26",
-    title: "Car Hire",
-    image:
-      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRGQCN4nS8ZJXDiA6Z_lzucgVVmA3lLlPFxPw&usqp=CAU",
+    title: "Car 4 Hire",
+    icon: "car-side",
     screen: "CarHire",
   },
 ];
