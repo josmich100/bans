@@ -135,15 +135,6 @@ const Home = () => {
             style={[tw`mb-3 w-44 h-24`]}
             source={require("../assets/splash.png")}
           />
-          {/* <TouchableOpacity
-            title="Login"
-            style={tw`h-6 w-16 rounded-full items-center bg-blue-400`}
-            onPress={() => {
-              navigation.navigate("Login");
-            }}
-          >
-            <Text style={tw`text-white text-lg font-bold`}>Login</Text>
-          </TouchableOpacity> */}
         </View>
 
         <NavOptions user={user}/>
