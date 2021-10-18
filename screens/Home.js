@@ -10,6 +10,7 @@ import {
   TouchableOpacity,
   StyleSheet,
 } from "react-native";
+import { useKeepAwake } from "expo-keep-awake";
 import tw from "tailwind-react-native-classnames";
 import firebase from "../firebase";
 import { FirebaseRecaptchaVerifierModal } from "expo-firebase-recaptcha";
@@ -19,6 +20,7 @@ import NavOptions from "../components/NavOptions";
 import Login from "../components/Login";
 
 const Home = () => {
+  useKeepAwake();
   const recaptchaVerifier = useRef(null);
   const attemptInvisibleVerification = false;
   const [initializing, setInitializing] = useState(true);
