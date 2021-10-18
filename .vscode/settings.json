@@ -1,7 +1,4 @@
 {
-  "autoimport.absolute": true,
-  "python.analysis.completeFunctionParens": true,
-  "editor.formatOnPaste": true,
-  "editor.formatOnSave": true,
-  "editor.defaultFormatter": "esbenp.prettier-vscode"
+    "autoimport.absolute": true,
+    "python.analysis.completeFunctionParens": true
 }
